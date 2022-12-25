@@ -3,18 +3,18 @@ entries:
   common:
   - apiVersion: v2
     appVersion: v1
-    created: "2022-12-24T18:27:57.11859592-08:00"
+    created: "2022-12-24T19:48:02.818095288-08:00"
     description: A library chart for iX Official Catalog
     digest: 33bb541556c08e06d3591798f263a5f367f23fee433d2bfddf09b74a46637155
     name: common
     type: library
     urls:
-    - https://eljefe80.github.io/stable/kasm/1.12.0/charts/common-2112.0.0.tgz
+    - https://eljefe80.github.io/kasm-helm-charts/stable/kasm/1.12.0/charts/common-2112.0.0.tgz
     version: 2112.0.0
   kasm:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-12-24T18:27:57.118161501-08:00"
+    created: "2022-12-24T19:48:02.817318581-08:00"
     dependencies:
     - name: common
       repository: file://../../../library/common/2112.0.0
@@ -31,6 +31,6 @@ entries:
     sources:
     - https://github.com/kasmtech
     urls:
-    - https://eljefe80.github.io/stable/kasm/1.12.0/kasm-1.12.0.tgz
+    - https://eljefe80.github.io/kasm-helm-charts/stable/kasm/1.12.0/kasm-1.12.0.tgz
     version: 1.12.0
-generated: "2022-12-24T18:27:57.117070201-08:00"
+generated: "2022-12-24T19:48:02.81346531-08:00"
