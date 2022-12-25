@@ -1,0 +1,7 @@
+appVolumeMounts:
+  data:
+    hostPath: /config/
+image:
+  pullPolicy: Always
+  repository: docker.io/kasmweb
+  tag: latest

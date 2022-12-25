@@ -4,7 +4,7 @@ dependencies:
 - name: common
   repository: file://../../../library/common/2112.0.0
   version: 2112.0.0
-description: Kasm Workspaces for TrueNAS SCALE
+description: Kasm Workspaces Helm Charts
 home: https://www.kasmweb.com/
 icon: https://kasm-ci.s3.amazonaws.com/kasm_logo.png
 keywords:
