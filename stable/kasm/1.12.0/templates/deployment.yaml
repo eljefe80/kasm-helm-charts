@@ -30,7 +30,7 @@ spec:
       hostNetwork: {{ .Values.hostNetwork }}
       volumes:
         - name: data
-        {{- if .Values.appVolumeMounts.data.hostPath -}}
+        {{ if .Values.appVolumeMounts.data.hostPath }}
           hostPath:
             path: {{ .Values.appVolumeMounts.data.hostPath }}
             type: Directory
@@ -40,10 +40,10 @@ spec:
         - name: kasm-input
           hostPath:
             path: /dev/input
-        {{- else -}}
+        {{ else }}
           persistentVolumeClaim:
             claimName: {{ .Values.appVolumeMounts.data.pvc }}
-        {{- end -}}
+        {{ end }}
 
 
       containers:
@@ -57,12 +57,12 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.appVolumeMounts.data.mountPath }}
-          {{- if .Values.appVolumeMounts.data.hostPath -}}
+          {{ if .Values.appVolumeMounts.data.hostPath }}
             - name: kasm-udev
               mountPath: /run/udev/data
             - name: kasm-input
               mountPath: /dev/input
-          {{- end -}}
+          {{ end }}
           ports:
             - name: web
               containerPort: {{ .Values.web_port }}
