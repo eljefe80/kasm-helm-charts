@@ -27,7 +27,9 @@ spec:
         {{- include "common.labels.selectorLabels" . | nindent 8 }}
       annotations: {{ include "common.annotations" . | nindent 8 }}
     spec:
+    {{ if .Values.appVolumeMounts.data.hostPath }}
       hostNetwork: {{ .Values.hostNetwork }}
+    {{ end }}
       volumes:
         - name: data
         {{ if .Values.appVolumeMounts.data.hostPath }}
