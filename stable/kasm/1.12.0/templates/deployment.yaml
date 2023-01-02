@@ -46,7 +46,13 @@ spec:
           persistentVolumeClaim:
             claimName: {{ .Values.appVolumeMounts.data.pvc }}
         {{ end }}
-
+        - name: certs
+          secret:
+            secretName: kasm-tls-cert
+      initContainers:
+        - name: init-certs
+          image: busybox:1.28
+          command: ['sh', '-c', "rm /opt/kasm/current/certs/kasm_nginx.*; ln -s /certs/tls.crt /opt/kasm/current/certs/kasm_nginx.crt; ln -s /certs/tls.key /opt/kasm/current/certs/kasm_nginx.key"]
 
       containers:
         - name: {{ .Chart.Name }}
@@ -59,6 +65,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: {{ .Values.appVolumeMounts.data.mountPath }}
+            - name: certs
+              mountPath: /opt/kasm/current/certs
           {{ if .Values.appVolumeMounts.data.hostPath }}
             - name: kasm-udev
               mountPath: /run/udev/data
