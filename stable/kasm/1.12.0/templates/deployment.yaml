@@ -48,7 +48,7 @@ spec:
         {{ end }}
         - name: certs
           secret:
-            secretName: kasm-tls-cert
+            secretName: kasm-tls-secret
       initContainers:
         - name: init-certs
           image: busybox:1.28
