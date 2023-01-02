@@ -49,11 +49,6 @@ spec:
         - name: certs
           secret:
             secretName: kasm-tls-secret
-      initContainers:
-        - name: init-certs
-          image: busybox:1.28
-          command: ['sh', '-c', "rm /opt/kasm/current/certs/kasm_nginx.*; ln -s /certs/tls.crt /opt/kasm/current/certs/kasm_nginx.crt; ln -s /certs/tls.key /opt/kasm/current/certs/kasm_nginx.key"]
-
       containers:
         - name: {{ .Chart.Name }}
           {{ include "common.containers.imageConfig" .Values.image | nindent 10 }}
@@ -62,6 +57,13 @@ spec:
             privileged: true
             readOnlyRootFilesystem: false
             runAsNonRoot: false
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - "cp /certs/tls.crt /opt/kasm/current/certs/kasm_nginx.crt; cp /certs/tls.key /opt/kasm/current/certs/kasm_nginx.key"
           volumeMounts:
             - name: data
               mountPath: {{ .Values.appVolumeMounts.data.mountPath }}
